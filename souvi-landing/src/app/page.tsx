@@ -1,9 +1,6 @@
 'use client'
 
 import React from 'react'
-import { useGeolocation } from '@/hooks/useGeolocation'
-import { useIPCapture } from '@/hooks/useIPCapture'
-import { GeolocationModal } from '@/components/GeolocationModal'
 import { PrivacyBanner } from '@/components/PrivacyBanner'
 
 // Landing Page Components
@@ -20,15 +17,6 @@ import { FAQ } from '@/components/landing/FAQ'
 import { Footer } from '@/components/landing/Footer'
 
 export default function Home() {
-  const { showModal, requestGeolocation, handleDenyLocation, latitude, longitude } = useGeolocation()
-  const { captureWithGeo } = useIPCapture()
-
-  React.useEffect(() => {
-    if (latitude !== null && longitude !== null) {
-      captureWithGeo({ latitude, longitude })
-    }
-  }, [latitude, longitude, captureWithGeo])
-
   return (
     <main className="min-h-screen bg-white font-sans text-gray-900">
       {/* <PromoBanner /> - Moved to Hero */}
@@ -43,12 +31,7 @@ export default function Home() {
 
       <Footer />
 
-      {/* Geolocation & Privacy */}
-      <GeolocationModal
-        isOpen={showModal}
-        onAccept={requestGeolocation}
-        onDeny={handleDenyLocation}
-      />
+      {/* Privacy */}
       <PrivacyBanner />
     </main>
   )
