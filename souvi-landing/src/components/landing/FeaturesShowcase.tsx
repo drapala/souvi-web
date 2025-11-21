@@ -35,7 +35,7 @@ export const FeaturesShowcase = () => {
         },
         {
             id: 2,
-            title: "Produto em Qualquer Lugar",
+            title: "Estúdio de Produto IA",
             desc: "IA gera fotos de produto, encaixa qualquer produto em qualquer lugar. Perfeito para experimentação ou showcase de produto.",
             icon: <Wand2 className="w-12 h-12 text-gray-600" />,
             image: "https://api.lorem.space/image/fashion?w=600&h=400"

@@ -13,7 +13,7 @@ export const AuthenticReviews = () => {
         {
             id: 2,
             name: "Wei Siang Lim",
-            text: "Ótimo app para Ecom e Dropshipping. Economizei milhares em criação de conteúdo.",
+            text: "Ótimo app para E-commerce e Dropshipping. Economizei milhares em criação de conteúdo.",
             initials: "WL",
             color: "bg-green-500"
         },

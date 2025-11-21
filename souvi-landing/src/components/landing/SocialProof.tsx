@@ -14,7 +14,7 @@ export const SocialProof = () => {
                 {/* Top Part: Trusted Brands */}
                 <div className="w-full mb-24">
                     <p className="text-gray-400 text-sm font-medium mb-10 tracking-wide">
-                        Confiado por Empresas de Todos os Tamanhos
+                        A escolha de empresas de todos os tamanhos
                     </p>
 
                     <div className="overflow-hidden w-full">
