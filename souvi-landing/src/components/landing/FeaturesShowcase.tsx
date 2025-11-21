@@ -7,19 +7,19 @@ export const FeaturesShowcase = () => {
         {
             id: 1,
             badge: "Avatar 4",
-            text: "Turn any photo to Avatar",
+            text: "Transforme qualquer foto em Avatar",
             gradient: "from-pink-500 to-purple-600"
         },
         {
             id: 2,
             badge: "Product Avatar",
-            text: "Avatar showcases any product",
+            text: "Avatar apresenta qualquer produto",
             gradient: "from-purple-600 to-blue-600"
         },
         {
             id: 3,
             badge: "Design My Avatar",
-            text: "Create consistent Avatar",
+            text: "Crie Avatar consistente",
             gradient: "from-cyan-500 to-blue-600"
         }
     ]
@@ -28,24 +28,24 @@ export const FeaturesShowcase = () => {
     const videoFeatures = [
         {
             id: 1,
-            title: "Avatar Marketing Video",
-            desc: "Input a URL or Upload assets, AI generates marketing video with realistic UGC style Avatar.",
+            title: "Vídeo de Marketing com Avatar",
+            desc: "Insira uma URL ou faça upload de assets, a IA gera vídeo de marketing com Avatar estilo UGC realista.",
             icon: <Video className="w-12 h-12 text-gray-600" />,
-            image: "https://source.unsplash.com/featured/600x400?marketing"
+            image: "https://api.lorem.space/image/movie?w=600&h=400"
         },
         {
             id: 2,
-            title: "Product Anyshoot",
-            desc: "AI generates product shooting, fit any product anywhere. Perfect for try-on or product showcase.",
+            title: "Produto em Qualquer Lugar",
+            desc: "IA gera fotos de produto, encaixa qualquer produto em qualquer lugar. Perfeito para experimentação ou showcase de produto.",
             icon: <Wand2 className="w-12 h-12 text-gray-600" />,
-            image: "https://source.unsplash.com/featured/600x400?product"
+            image: "https://api.lorem.space/image/fashion?w=600&h=400"
         },
         {
             id: 3,
-            title: "Character Swap",
-            desc: "Naturally replace anyone in the photo/video with your custom character.",
+            title: "Troca de Personagem",
+            desc: "Substitua naturalmente qualquer pessoa na foto/vídeo com seu personagem customizado.",
             icon: <RefreshCcw className="w-12 h-12 text-gray-600" />,
-            image: "https://source.unsplash.com/featured/600x400?character"
+            image: "https://api.lorem.space/image/face?w=600&h=400"
         }
     ]
 
@@ -60,7 +60,7 @@ export const FeaturesShowcase = () => {
                             AI Avatar
                         </h3>
                         <h2 className="text-3xl md:text-4xl font-bold">
-                            Realistic, Consistent, Customizable
+                            Realista, Consistente, Customizável
                         </h2>
                     </div>
 
@@ -98,7 +98,7 @@ export const FeaturesShowcase = () => {
                             AI-Powered Video
                         </h3>
                         <h2 className="text-3xl md:text-4xl font-bold">
-                            Edit, Generate, Amaze
+                            Edite, Gere, Impressione
                         </h2>
                     </div>
 

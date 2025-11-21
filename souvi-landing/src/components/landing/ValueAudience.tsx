@@ -7,17 +7,17 @@ export const ValueAudience = () => {
         {
             id: 1,
             value: "10X",
-            desc: "faster video production. From weeks to minutes."
+            desc: "produção de vídeo mais rápida. De semanas para minutos."
         },
         {
             id: 2,
             value: "80-90%",
-            desc: "cost savings. High-quality videos without the agency price tag."
+            desc: "de economia. Vídeos de alta qualidade sem o preço de agência."
         },
         {
             id: 3,
             value: "0",
-            desc: "learning curve. Anyone can start creating immediately."
+            desc: "de curva de aprendizado. Qualquer um pode começar a criar imediatamente."
         }
     ]
 
@@ -25,26 +25,26 @@ export const ValueAudience = () => {
     const audience = [
         {
             id: 1,
-            title: "Affiliate Marketers",
-            desc: "Stay ahead of competition with rapid content creation.",
+            title: "Afiliados",
+            desc: "Fique à frente da concorrência com criação rápida de conteúdo.",
             icon: <Users className="w-6 h-6 text-blue-500" />
         },
         {
             id: 2,
-            title: "DTC Brands",
-            desc: "Launch campaigns faster and test creatives efficiently.",
+            title: "Marcas DTC",
+            desc: "Lançe campanhas mais rápido e teste criativos com eficiência.",
             icon: <Crown className="w-6 h-6 text-blue-500" />
         },
         {
             id: 3,
-            title: "E-commerce Sellers",
-            desc: "Turn listings into showcases that convert browsers to buyers.",
+            title: "Vendedores E-commerce",
+            desc: "Transforme listagens em vitrines que convertem visitantes em compradores.",
             icon: <ShoppingBag className="w-6 h-6 text-blue-500" />
         },
         {
             id: 4,
-            title: "Agencies",
-            desc: "Deliver more content, faster, and scale your client base.",
+            title: "Agências",
+            desc: "Entregue mais conteúdo, mais rápido, e escale sua base de clientes.",
             icon: <Building2 className="w-6 h-6 text-blue-500" />
         }
     ]
@@ -57,10 +57,10 @@ export const ValueAudience = () => {
                 <div className="mb-40">
                     <div className="text-center mb-16 max-w-3xl mx-auto">
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                            Create marketing videos 10x faster – at a fraction of the cost
+                            Crie vídeos de marketing 10x mais rápido – por uma fração do custo
                         </h2>
                         <p className="text-gray-400 text-lg">
-                            Marketing videos shouldn't take weeks. Automate your workflow and focus on strategy.
+                            Vídeos de marketing não deveriam levar semanas. Automatize seu fluxo e foque na estratégia.
                         </p>
                     </div>
 
@@ -85,10 +85,10 @@ export const ValueAudience = () => {
                 <div>
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            From Solopreneurs to Global Brands
+                            De Solopreneurs a Marcas Globais
                         </h2>
                         <p className="text-gray-400 text-lg">
-                            Scalable solutions for every stage of growth.
+                            Soluções escaláveis para cada estágio de crescimento.
                         </p>
                     </div>
 

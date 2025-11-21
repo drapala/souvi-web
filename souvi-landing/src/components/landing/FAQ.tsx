@@ -10,26 +10,26 @@ export const FAQ = () => {
     }
 
     const questions = [
-        "What is an AI Video Tool for Marketing?",
-        "What makes Topview the best AI Video Tool for Marketing?",
-        "Who is Topview for?",
-        "Can I use Topview without video editing experience?",
-        "What do I need to create a marketing video with Topview?",
-        "What makes Topview different from other AI marketing video tools?",
-        "Can Topview create videos for e-commerce or social media ads?",
-        "Does Topview support multiple languages or markets?",
-        "How long does it take to generate an AI marketing video?",
-        "Can I try Topview for free?",
-        "Does the generated video have a watermark?",
-        "Is my uploaded content safe?",
-        "Can I use Topview videos for commercial purposes?"
+        "O que é uma Ferramenta de Vídeo IA para Marketing?",
+        "O que torna o Souvi a melhor Ferramenta de Vídeo IA para Marketing?",
+        "Para quem é o Souvi?",
+        "Posso usar o Souvi sem experiência em edição de vídeo?",
+        "O que preciso para criar um vídeo de marketing com o Souvi?",
+        "O que torna o Souvi diferente de outras ferramentas de vídeo IA?",
+        "O Souvi pode criar vídeos para e-commerce ou anúncios em redes sociais?",
+        "O Souvi suporta múltiplos idiomas ou mercados?",
+        "Quanto tempo leva para gerar um vídeo de marketing com IA?",
+        "Posso experimentar o Souvi gratuitamente?",
+        "O vídeo gerado tem marca d'água?",
+        "Meu conteúdo enviado está seguro?",
+        "Posso usar vídeos do Souvi para fins comerciais?"
     ]
 
     return (
         <section className="bg-black py-24 text-white">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-                    Frequently Asked Questions
+                    Perguntas Frequentes
                 </h2>
 
                 <div className="space-y-4">

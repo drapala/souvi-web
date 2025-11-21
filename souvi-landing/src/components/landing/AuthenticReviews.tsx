@@ -6,56 +6,56 @@ export const AuthenticReviews = () => {
         {
             id: 1,
             name: "Sanket Bhoirkar",
-            text: "Best AI Generated UGC Product Video. The quality is unmatched and the speed is incredible.",
+            text: "Melhor Vídeo UGC de Produto Gerado por IA. A qualidade é inigualável e a velocidade é incrível.",
             initials: "SB",
             color: "bg-blue-500"
         },
         {
             id: 2,
             name: "Wei Siang Lim",
-            text: "Great app for Ecom and Dropshipping. Saved me thousands on content creation.",
+            text: "Ótimo app para Ecom e Dropshipping. Economizei milhares em criação de conteúdo.",
             initials: "WL",
             color: "bg-green-500"
         },
         {
             id: 3,
             name: "Van Long",
-            text: "Topview delivers a refreshingly no-nonsense experience. Exactly what I needed.",
+            text: "Souvi entrega uma experiência refrescantemente direta. Exatamente o que eu precisava.",
             initials: "VL",
             color: "bg-purple-500"
         },
         {
             id: 4,
             name: "Md. Obaydul Islam",
-            text: "Incredible tool for scaling ad creatives. The avatars look hyper-realistic.",
+            text: "Ferramenta incrível para escalar criativos de anúncios. Os avatares parecem hiper-realistas.",
             initials: "MI",
             color: "bg-orange-500"
         },
         {
             id: 5,
             name: "Zoltan Baranyai",
-            text: "A game changer for small businesses. Professional marketing videos in minutes.",
+            text: "Um divisor de águas para pequenos negócios. Vídeos de marketing profissionais em minutos.",
             initials: "ZB",
             color: "bg-red-500"
         },
         {
             id: 6,
             name: "Ernest Dents",
-            text: "The best investment for my marketing strategy this year. Highly recommended.",
+            text: "O melhor investimento para minha estratégia de marketing este ano. Altamente recomendado.",
             initials: "ED",
             color: "bg-teal-500"
         },
         {
             id: 7,
             name: "Simone Castelletti",
-            text: "Finally an AI video tool that actually understands marketing psychology.",
+            text: "Finalmente uma ferramenta de vídeo IA que realmente entende psicologia de marketing.",
             initials: "SC",
             color: "bg-indigo-500"
         },
         {
             id: 8,
             name: "Edward",
-            text: "Simple, fast, and effective. My ROAS has increased significantly since using this.",
+            text: "Simples, rápido e eficaz. Meu ROAS aumentou significativamente desde que comecei a usar.",
             initials: "E",
             color: "bg-pink-500"
         }
@@ -84,10 +84,10 @@ export const AuthenticReviews = () => {
         <section className="bg-black py-24 overflow-hidden">
             <div className="text-center mb-16 px-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Authentic User Reviews
+                    Avaliações Autênticas de Usuários
                 </h2>
                 <p className="text-gray-400">
-                    Join thousands of satisfied creators and brands.
+                    Junte-se a milhares de criadores e marcas satisfeitos.
                 </p>
             </div>
 

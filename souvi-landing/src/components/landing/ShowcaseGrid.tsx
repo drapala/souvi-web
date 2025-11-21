@@ -159,7 +159,7 @@ export const ShowcaseGrid = () => {
                             onClick={() => setShowAll(true)}
                             className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
                         >
-                            Load more
+                            Carregar mais
                             <ChevronDown className="w-5 h-5" />
                         </button>
                     </div>
