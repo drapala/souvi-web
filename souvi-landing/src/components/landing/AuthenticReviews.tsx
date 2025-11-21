@@ -5,58 +5,58 @@ export const AuthenticReviews = () => {
     const reviews = [
         {
             id: 1,
-            name: "Sanket Bhoirkar",
+            name: "Carlos Mendes",
             text: "Melhor Vídeo UGC de Produto Gerado por IA. A qualidade é inigualável e a velocidade é incrível.",
-            initials: "SB",
+            initials: "CM",
             color: "bg-blue-500"
         },
         {
             id: 2,
-            name: "Wei Siang Lim",
+            name: "Juliana Santos",
             text: "Ótimo app para E-commerce e Dropshipping. Economizei milhares em criação de conteúdo.",
-            initials: "WL",
+            initials: "JS",
             color: "bg-green-500"
         },
         {
             id: 3,
-            name: "Van Long",
+            name: "Rafael Silva",
             text: "Souvi entrega uma experiência refrescantemente direta. Exatamente o que eu precisava.",
-            initials: "VL",
+            initials: "RS",
             color: "bg-purple-500"
         },
         {
             id: 4,
-            name: "Md. Obaydul Islam",
+            name: "Mariana Costa",
             text: "Ferramenta incrível para escalar criativos de anúncios. Os avatares parecem hiper-realistas.",
-            initials: "MI",
+            initials: "MC",
             color: "bg-orange-500"
         },
         {
             id: 5,
-            name: "Zoltan Baranyai",
+            name: "Pedro Oliveira",
             text: "Um divisor de águas para pequenos negócios. Vídeos de marketing profissionais em minutos.",
-            initials: "ZB",
+            initials: "PO",
             color: "bg-red-500"
         },
         {
             id: 6,
-            name: "Ernest Dents",
+            name: "Ana Paula Rodrigues",
             text: "O melhor investimento para minha estratégia de marketing este ano. Altamente recomendado.",
-            initials: "ED",
+            initials: "AR",
             color: "bg-teal-500"
         },
         {
             id: 7,
-            name: "Simone Castelletti",
+            name: "Lucas Ferreira",
             text: "Finalmente uma ferramenta de vídeo IA que realmente entende psicologia de marketing.",
-            initials: "SC",
+            initials: "LF",
             color: "bg-indigo-500"
         },
         {
             id: 8,
-            name: "Edward",
+            name: "Beatriz Lima",
             text: "Simples, rápido e eficaz. Meu ROAS aumentou significativamente desde que comecei a usar.",
-            initials: "E",
+            initials: "BL",
             color: "bg-pink-500"
         }
     ]

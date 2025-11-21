@@ -1,7 +1,47 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import { ArrowRight, Wand2, Video, RefreshCcw } from 'lucide-react'
+import { pexelsService, PexelsPhoto } from '@/lib/pexels'
 
 export const FeaturesShowcase = () => {
+    const [avatarImages, setAvatarImages] = useState<string[]>([])
+    const [videoImages, setVideoImages] = useState<string[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                // Fetch images for AI Avatar section (portraits)
+                const portraits = await pexelsService.searchPhotos('portrait model face', 3)
+
+                // Fetch images for AI-Powered Video section
+                const [marketing, product, people] = await Promise.all([
+                    pexelsService.searchPhotos('video marketing creator', 1),
+                    pexelsService.searchPhotos('product photography studio', 1),
+                    pexelsService.searchPhotos('people portrait photography', 1)
+                ])
+
+                if (portraits.length >= 3) {
+                    setAvatarImages(portraits.map(p => p.src.large))
+                }
+
+                setVideoImages([
+                    marketing[0]?.src.large || 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop',
+                    product[0]?.src.large || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=400&fit=crop',
+                    people[0]?.src.large || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=400&fit=crop'
+                ])
+
+                setLoading(false)
+            } catch (error) {
+                console.error('Error fetching Pexels images:', error)
+                setLoading(false)
+            }
+        }
+
+        fetchImages()
+    }, [])
+
     // Data for Block 1: AI Avatar
     const avatarFeatures = [
         {
@@ -30,22 +70,19 @@ export const FeaturesShowcase = () => {
             id: 1,
             title: "Vídeo de Marketing com Avatar",
             desc: "Insira uma URL ou faça upload de assets, a IA gera vídeo de marketing com Avatar estilo UGC realista.",
-            icon: <Video className="w-12 h-12 text-gray-600" />,
-            image: "https://api.lorem.space/image/movie?w=600&h=400"
+            icon: <Video className="w-12 h-12 text-gray-600" />
         },
         {
             id: 2,
             title: "Estúdio de Produto IA",
             desc: "IA gera fotos de produto, encaixa qualquer produto em qualquer lugar. Perfeito para experimentação ou showcase de produto.",
-            icon: <Wand2 className="w-12 h-12 text-gray-600" />,
-            image: "https://api.lorem.space/image/fashion?w=600&h=400"
+            icon: <Wand2 className="w-12 h-12 text-gray-600" />
         },
         {
             id: 3,
             title: "Troca de Personagem",
             desc: "Substitua naturalmente qualquer pessoa na foto/vídeo com seu personagem customizado.",
-            icon: <RefreshCcw className="w-12 h-12 text-gray-600" />,
-            image: "https://api.lorem.space/image/face?w=600&h=400"
+            icon: <RefreshCcw className="w-12 h-12 text-gray-600" />
         }
     ]
 
@@ -65,18 +102,30 @@ export const FeaturesShowcase = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {avatarFeatures.map((feature) => (
+                        {avatarFeatures.map((feature, index) => (
                             <div
                                 key={feature.id}
                                 className={`relative h-80 rounded-2xl overflow-hidden bg-gradient-to-br ${feature.gradient} group cursor-pointer transition-transform hover:scale-[1.02] duration-300`}
                             >
+                                {/* Background Image from Pexels */}
+                                {!loading && avatarImages[index] && (
+                                    <img
+                                        src={avatarImages[index]}
+                                        alt={feature.text}
+                                        className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity"
+                                    />
+                                )}
+
+                                {/* Gradient Overlay */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-60`} />
+
                                 {/* Badge */}
-                                <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-white border border-white/10">
+                                <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-white border border-white/10 z-10">
                                     {feature.badge}
                                 </div>
 
                                 {/* Bottom Content */}
-                                <div className="absolute bottom-0 left-0 w-full p-6">
+                                <div className="absolute bottom-0 left-0 w-full p-6 z-10">
                                     <div className="flex items-center justify-between">
                                         <p className="text-lg font-semibold text-white max-w-[70%] leading-tight">
                                             {feature.text}
@@ -103,21 +152,25 @@ export const FeaturesShowcase = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {videoFeatures.map((feature) => (
+                        {videoFeatures.map((feature, index) => (
                             <div key={feature.id} className="group">
                                 {/* Visual Container */}
                                 <div className="relative aspect-video bg-zinc-900 rounded-xl overflow-hidden mb-6 border border-zinc-800 group-hover:border-zinc-700 transition-colors">
-                                    {/* Placeholder Image - Replace src with actual UI screenshot */}
-                                    <img
-                                        src={feature.image}
-                                        alt={feature.title}
-                                        className="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500"
-                                    />
+                                    {loading ? (
+                                        <div className="w-full h-full bg-zinc-800 animate-pulse" />
+                                    ) : (
+                                        <img
+                                            src={videoImages[index]}
+                                            alt={feature.title}
+                                            className="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500"
+                                        />
+                                    )}
 
-                                    {/* Fallback Icon Overlay (Optional, if image fails or for style) */}
+                                    {/* Icon Overlay */}
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                        {/* You can remove this if you only want the image */}
-                                        {/* {feature.icon} */}
+                                        <div className="opacity-30 group-hover:opacity-50 transition-opacity">
+                                            {feature.icon}
+                                        </div>
                                     </div>
                                 </div>
 

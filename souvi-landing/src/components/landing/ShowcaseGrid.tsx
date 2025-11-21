@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+'use client'
+
+import React, { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { ComparisonCard } from './ComparisonCard';
+import { pexelsService, PexelsVideo } from '@/lib/pexels';
 
 type Example = {
     id: number;
@@ -9,160 +12,104 @@ type Example = {
     referencePoster: string;
     aiVideo: string;
     aiPoster: string;
-    productIcon: string; // URL for product overlay image/icon
+    productIcon: string;
 };
 
-const examples: Example[] = [
-    {
-        id: 1,
-        category: 'Makeup',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?makeup',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?makeup',
-        productIcon: 'https://source.unsplash.com/40x40?makeup',
-    },
-    {
-        id: 2,
-        category: 'Consumer Electronics',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?electronics',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?electronics',
-        productIcon: 'https://source.unsplash.com/40x40?electronics',
-    },
-    {
-        id: 3,
-        category: 'Beverages',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?beverage',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?beverage',
-        productIcon: 'https://source.unsplash.com/40x40?beverage',
-    },
-    {
-        id: 4,
-        category: 'Outdoor Equipment',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?outdoor',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?outdoor',
-        productIcon: 'https://source.unsplash.com/40x40?outdoor',
-    },
-    {
-        id: 5,
-        category: 'Accessories',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?accessories',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?accessories',
-        productIcon: 'https://source.unsplash.com/40x40?accessories',
-    },
-    {
-        id: 6,
-        category: 'Jewelry',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?jewelry',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?jewelry',
-        productIcon: 'https://source.unsplash.com/40x40?jewelry',
-    },
-    {
-        id: 7,
-        category: 'Fragrances',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?fragrance',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?fragrance',
-        productIcon: 'https://source.unsplash.com/40x40?fragrance',
-    },
-    {
-        id: 8,
-        category: 'Mobile Apps',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?mobile',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?mobile',
-        productIcon: 'https://source.unsplash.com/40x40?mobile',
-    },
-    {
-        id: 9,
-        category: 'Supplements',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?supplement',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?supplement',
-        productIcon: 'https://source.unsplash.com/40x40?supplement',
-    },
-    {
-        id: 10,
-        category: 'Bags',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?bag',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?bag',
-        productIcon: 'https://source.unsplash.com/40x40?bag',
-    },
-    {
-        id: 11,
-        category: 'Footwear',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?shoes',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?shoes',
-        productIcon: 'https://source.unsplash.com/40x40?shoes',
-    },
-    {
-        id: 12,
-        category: 'Eyewear',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?eyewear',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?eyewear',
-        productIcon: 'https://source.unsplash.com/40x40?eyewear',
-    },
-    {
-        id: 13,
-        category: 'Food & Beverage',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?food',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?food',
-        productIcon: 'https://source.unsplash.com/40x40?food',
-    },
-    {
-        id: 14,
-        category: 'Pet Food',
-        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        referencePoster: 'https://source.unsplash.com/featured/400x600?petfood',
-        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        aiPoster: 'https://source.unsplash.com/featured/400x600?petfood',
-        productIcon: 'https://source.unsplash.com/40x40?petfood',
-    },
+const categories = [
+    { name: 'Makeup', query: 'makeup tutorial' },
+    { name: 'Consumer Electronics', query: 'technology gadget' },
+    { name: 'Beverages', query: 'drink beverage' },
+    { name: 'Outdoor Equipment', query: 'outdoor adventure' },
+    { name: 'Accessories', query: 'fashion accessories' },
+    { name: 'Jewelry', query: 'jewelry' },
+    { name: 'Fragrances', query: 'perfume fragrance' },
+    { name: 'Mobile Apps', query: 'smartphone app' },
+    { name: 'Supplements', query: 'fitness supplement' },
+    { name: 'Bags', query: 'handbag fashion' },
+    { name: 'Footwear', query: 'shoes sneakers' },
+    { name: 'Eyewear', query: 'sunglasses eyewear' },
+    { name: 'Food & Beverage', query: 'food cooking' },
+    { name: 'Pet Food', query: 'pet dog cat' }
 ];
 
 export const ShowcaseGrid = () => {
     const [showAll, setShowAll] = useState(false);
+    const [examples, setExamples] = useState<Example[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPexelsVideos = async () => {
+            setLoading(true);
+            const allExamples: Example[] = [];
+
+            for (let i = 0; i < categories.length; i++) {
+                const category = categories[i];
+                try {
+                    const videos = await pexelsService.searchVideos(category.query, 2);
+
+                    if (videos.length >= 2) {
+                        allExamples.push({
+                            id: i + 1,
+                            category: category.name,
+                            referenceVideo: pexelsService.getBestVideoFile(videos[0]),
+                            referencePoster: videos[0].image,
+                            aiVideo: pexelsService.getBestVideoFile(videos[1]),
+                            aiPoster: videos[1].image,
+                            productIcon: videos[0].video_pictures[0]?.picture || videos[0].image
+                        });
+                    }
+                } catch (error) {
+                    console.error(`Error fetching videos for ${category.name}:`, error);
+                    // Fallback to placeholder
+                    allExamples.push({
+                        id: i + 1,
+                        category: category.name,
+                        referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                        referencePoster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=600&fit=crop',
+                        aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                        aiPoster: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400&h=600&fit=crop',
+                        productIcon: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=40&h=40&fit=crop'
+                    });
+                }
+            }
+
+            setExamples(allExamples);
+            setLoading(false);
+        };
+
+        fetchPexelsVideos();
+    }, []);
+
     const displayed = showAll ? examples : examples.slice(0, 4);
 
     return (
         <section className="bg-black py-20 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {displayed.map((ex) => (
-                        <ComparisonCard key={ex.id} example={ex} />
-                    ))}
-                </div>
-                {!showAll && (
-                    <div className="flex justify-center mt-12">
-                        <button
-                            onClick={() => setShowAll(true)}
-                            className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
-                        >
-                            Carregar mais
-                            <ChevronDown className="w-5 h-5" />
-                        </button>
+                {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {[...Array(4)].map((_, i) => (
+                            <div key={i} className="aspect-[2/1] bg-gray-800 rounded-2xl animate-pulse" />
+                        ))}
                     </div>
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {displayed.map((ex) => (
+                                <ComparisonCard key={ex.id} example={ex} />
+                            ))}
+                        </div>
+                        {!showAll && examples.length > 4 && (
+                            <div className="flex justify-center mt-12">
+                                <button
+                                    onClick={() => setShowAll(true)}
+                                    className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
+                                >
+                                    Carregar mais
+                                    <ChevronDown className="w-5 h-5" />
+                                </button>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </section>

@@ -1,7 +1,23 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import { Camera, User, Sparkles } from 'lucide-react'
+import { pexelsService, PexelsPhoto } from '@/lib/pexels'
 
 export const ModelsSection = () => {
+    const [models, setModels] = useState<PexelsPhoto[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchModels = async () => {
+            const results = await pexelsService.searchPhotos('portrait model', 4)
+            setModels(results)
+            setLoading(false)
+        }
+
+        fetchModels()
+    }, [])
+
     return (
         <section className="py-24 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,12 +57,54 @@ export const ModelsSection = () => {
                     <div className="relative">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-4 mt-12">
-                                <div className="aspect-[3/4] bg-gray-200 rounded-2xl"></div>
-                                <div className="aspect-[3/4] bg-gray-200 rounded-2xl"></div>
+                                {loading ? (
+                                    <>
+                                        <div className="aspect-[3/4] bg-gray-200 rounded-2xl animate-pulse"></div>
+                                        <div className="aspect-[3/4] bg-gray-200 rounded-2xl animate-pulse"></div>
+                                    </>
+                                ) : (
+                                    <>
+                                        {models[0] && (
+                                            <img
+                                                src={models[0].src.portrait}
+                                                alt="Model 1"
+                                                className="aspect-[3/4] rounded-2xl object-cover shadow-lg"
+                                            />
+                                        )}
+                                        {models[1] && (
+                                            <img
+                                                src={models[1].src.portrait}
+                                                alt="Model 2"
+                                                className="aspect-[3/4] rounded-2xl object-cover shadow-lg"
+                                            />
+                                        )}
+                                    </>
+                                )}
                             </div>
                             <div className="space-y-4">
-                                <div className="aspect-[3/4] bg-gray-200 rounded-2xl"></div>
-                                <div className="aspect-[3/4] bg-gray-200 rounded-2xl"></div>
+                                {loading ? (
+                                    <>
+                                        <div className="aspect-[3/4] bg-gray-200 rounded-2xl animate-pulse"></div>
+                                        <div className="aspect-[3/4] bg-gray-200 rounded-2xl animate-pulse"></div>
+                                    </>
+                                ) : (
+                                    <>
+                                        {models[2] && (
+                                            <img
+                                                src={models[2].src.portrait}
+                                                alt="Model 3"
+                                                className="aspect-[3/4] rounded-2xl object-cover shadow-lg"
+                                            />
+                                        )}
+                                        {models[3] && (
+                                            <img
+                                                src={models[3].src.portrait}
+                                                alt="Model 4"
+                                                className="aspect-[3/4] rounded-2xl object-cover shadow-lg"
+                                            />
+                                        )}
+                                    </>
+                                )}
                             </div>
                         </div>
                         {/* Floating Badge */}

@@ -14,6 +14,7 @@ import {
     Video,
     Image as ImageIcon
 } from 'lucide-react'
+import { pexelsService, PexelsPhoto } from '@/lib/pexels'
 
 // Utility for class merging (simplified version of clsx + tailwind-merge)
 function cn(...classes: (string | undefined | null | false)[]) {
@@ -27,10 +28,10 @@ const TopBanner = () => (
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}></div>
         <div className="relative z-10 flex items-center justify-center gap-2">
             <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                Banana Pro está no ar!
+                Banana Pro is now live!
             </span>
             <span className="text-gray-200">|</span>
-            <span className="font-semibold tracking-wide">PROMOÇÃO BLACK FRIDAY</span>
+            <span className="font-semibold tracking-wide">BLACK FRIDAY SALE</span>
             <span className="bg-yellow-400 text-black text-[10px] px-1.5 py-0.5 rounded font-bold ml-1">-47% OFF</span>
         </div>
     </div>
@@ -43,28 +44,28 @@ const Navbar = () => (
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <Video className="text-white w-5 h-5" />
             </div>
-            <span className="text-white font-bold text-xl tracking-tight">Souvi</span>
+            <span className="text-white font-bold text-xl tracking-tight">TopView</span>
         </div>
 
         {/* Center: Links */}
         <div className="hidden md:flex items-center gap-8">
-            {['Casos de uso', 'Ferramentas IA', 'Recursos'].map((item) => (
+            {['Use cases', 'AI tools', 'Resources'].map((item) => (
                 <button key={item} className="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
                     {item}
                     <ChevronDown className="w-3 h-3 opacity-70" />
                 </button>
             ))}
             <button className="text-gray-400 hover:text-white text-sm font-medium transition-colors">API</button>
-            <button className="text-gray-400 hover:text-white text-sm font-medium transition-colors">Preços</button>
+            <button className="text-gray-400 hover:text-white text-sm font-medium transition-colors">Pricing</button>
         </div>
 
         {/* Right: Auth */}
         <div className="flex items-center gap-4">
             <button className="text-gray-300 hover:text-white text-sm font-medium transition-colors">
-                Entrar
+                Sign in
             </button>
             <button className="bg-[#5b50ff] hover:bg-[#4f43e0] text-white text-sm font-medium px-5 py-2 rounded-full transition-colors shadow-[0_0_15px_rgba(91,80,255,0.3)]">
-                Painel
+                Dashboard
             </button>
         </div>
     </nav>
@@ -90,7 +91,7 @@ const CarouselCard = ({
         >
             {/* Reference */}
             <div className="flex flex-col items-center gap-2 z-10">
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Referência</span>
+                <span className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Reference</span>
                 <div className="w-24 h-40 rounded-lg overflow-hidden border border-white/10 relative group">
                     <img src={reference} alt="Ref" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -125,7 +126,7 @@ const CarouselCard = ({
 
             {/* Result */}
             <div className="flex flex-col items-center gap-2 z-10">
-                <span className="text-[10px] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 uppercase tracking-wider font-semibold">Recriado por IA</span>
+                <span className="text-[10px] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 uppercase tracking-wider font-semibold">AI-Recreated</span>
                 <div className="w-24 h-40 rounded-lg overflow-hidden border border-purple-500/30 relative shadow-[0_0_15px_rgba(168,85,247,0.2)]">
                     <img src={result} alt="Result" className="w-full h-full object-cover" />
                     <div className="absolute top-2 right-2">
@@ -140,12 +141,7 @@ const CarouselCard = ({
 export const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(1)
     const [mounted, setMounted] = useState(false)
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-
-    const cards = [
+    const [cards, setCards] = useState([
         {
             id: 1,
             reference: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=600&fit=crop",
@@ -164,7 +160,48 @@ export const Hero = () => {
             product: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop",
             result: "https://images.unsplash.com/photo-1505740106531-4243f3831c78?w=400&h=600&fit=crop"
         }
-    ]
+    ])
+
+    useEffect(() => {
+        setMounted(true)
+
+        // Fetch real images from Pexels
+        const fetchPexelsImages = async () => {
+            try {
+                const [models, products] = await Promise.all([
+                    pexelsService.searchPhotos('portrait model', 6),
+                    pexelsService.searchPhotos('product photography', 3)
+                ])
+
+                if (models.length >= 6 && products.length >= 3) {
+                    setCards([
+                        {
+                            id: 1,
+                            reference: models[0].src.portrait,
+                            product: products[0].src.medium,
+                            result: models[1].src.portrait
+                        },
+                        {
+                            id: 2,
+                            reference: models[2].src.portrait,
+                            product: products[1].src.medium,
+                            result: models[3].src.portrait
+                        },
+                        {
+                            id: 3,
+                            reference: models[4].src.portrait,
+                            product: products[2].src.medium,
+                            result: models[5].src.portrait
+                        }
+                    ])
+                }
+            } catch (error) {
+                console.error('Error fetching Pexels images:', error)
+            }
+        }
+
+        fetchPexelsImages()
+    }, [])
 
     const nextCard = () => setActiveIndex((prev) => (prev + 1) % cards.length)
     const prevCard = () => setActiveIndex((prev) => (prev - 1 + cards.length) % cards.length)
@@ -188,7 +225,7 @@ export const Hero = () => {
                             mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                         )}
                     >
-                        #1 Agente de Vídeos de Marketing
+                        #1 Marketing Video Agent
                     </span>
 
                     <h1
@@ -197,9 +234,9 @@ export const Hero = () => {
                             mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                         )}
                     >
-                        Transforme Seu Produto Em <br />
+                        Turn Your Product Into <br />
                         <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-transparent bg-clip-text">
-                            Vídeos Virais
+                            Viral Videos
                         </span>
                     </h1>
 
@@ -213,7 +250,7 @@ export const Hero = () => {
                         <div className="px-4 py-3">
                             <input
                                 type="text"
-                                placeholder="Envie a imagem do seu produto ou vídeo de referência e descreva sua ideia..."
+                                placeholder="Upload your product image or reference video and describe your idea..."
                                 className="w-full bg-transparent text-gray-300 placeholder-gray-600 outline-none text-lg"
                             />
                         </div>
@@ -221,11 +258,11 @@ export const Hero = () => {
                             <div className="flex gap-2">
                                 <button className="flex items-center gap-2 px-4 py-2 bg-[#1a1a1a] hover:bg-[#252525] rounded-lg text-sm text-gray-300 transition-colors border border-white/5">
                                     <ImageIcon className="w-4 h-4 text-purple-400" />
-                                    Adicionar Imagem & Link
+                                    Add Image & Link
                                 </button>
                                 <button className="flex items-center gap-2 px-4 py-2 bg-[#1a1a1a] hover:bg-[#252525] rounded-lg text-sm text-gray-300 transition-colors border border-white/5">
                                     <Video className="w-4 h-4 text-blue-400" />
-                                    Vídeo de Referência
+                                    Reference Video
                                 </button>
                             </div>
                             <button className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
