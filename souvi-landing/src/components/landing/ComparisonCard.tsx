@@ -59,7 +59,7 @@ export const ComparisonCard: React.FC<Props> = ({ example }) => {
                     />
                     <div className="absolute bottom-2 left-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 text-sm text-white">
                         <VolumeX className="w-4 h-4" />
-                        Reference
+                        Referência
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@ export const ComparisonCard: React.FC<Props> = ({ example }) => {
                     </div>
                     <div className="absolute bottom-2 left-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 text-sm text-white">
                         <VolumeX className="w-4 h-4" />
-                        AI-Recreated
+                        Recriado por IA
                     </div>
                 </div>
             </div>

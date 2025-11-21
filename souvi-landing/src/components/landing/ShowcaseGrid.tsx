@@ -57,6 +57,17 @@ export const ShowcaseGrid = () => {
                             aiPoster: videos[1].image,
                             productIcon: videos[0].video_pictures[0]?.picture || videos[0].image
                         });
+                    } else {
+                        // Fallback when API returns no or insufficient results
+                        allExamples.push({
+                            id: i + 1,
+                            category: category.name,
+                            referenceVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                            referencePoster: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=600&fit=crop',
+                            aiVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                            aiPoster: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400&h=600&fit=crop',
+                            productIcon: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=40&h=40&fit=crop'
+                        });
                     }
                 } catch (error) {
                     console.error(`Error fetching videos for ${category.name}:`, error);

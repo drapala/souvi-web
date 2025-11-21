@@ -12,6 +12,7 @@ import { FeaturesShowcase } from '@/components/landing/FeaturesShowcase'
 import { ValueAudience } from '@/components/landing/ValueAudience'
 import { AuthenticReviews } from '@/components/landing/AuthenticReviews'
 import { FAQ } from '@/components/landing/FAQ'
+import { BlogSection } from '@/components/landing/BlogSection'
 
 
 import { Footer } from '@/components/landing/Footer'
@@ -27,6 +28,7 @@ export default function Home() {
       <ValueAudience />
       <AuthenticReviews />
       <FAQ />
+      <BlogSection />
 
 
       <Footer />

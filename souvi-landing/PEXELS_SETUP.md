@@ -11,7 +11,7 @@
    - Create a file named `.env.local` in the root of the `souvi-landing` directory
    - Add the following line:
    ```
-   NEXT_PUBLIC_PEXELS_API_KEY=your_api_key_here
+   NEXT_PUBLIC_PEXELS_API_KEY=BekWxUz4A7v9CTRlm5lkZUdnZvfhVNkS4vGvThvFqFWObsKvxgMCnhhE
    ```
    - Replace `your_api_key_here` with your actual Pexels API key
 
